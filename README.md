@@ -299,10 +299,10 @@ List the different published web services. The service name and service version 
 
 ### Publish/update a Service:
 
-### Fluent APIS
+##### Fluent APIS
 `ml.service(name: str)`
 
-### Non-Fluent equivalent
+##### Non-Fluent equivalent
 `ml.deploy_service(name: str, **kargs)`
 
 #### Publish and Update basics:
