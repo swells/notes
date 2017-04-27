@@ -273,3 +273,74 @@ ml.service('add-one')
    .package('numpy')
    .deploy()
 ```
+
+## Supported Functions
+
+
+### Get a Service:
+
+`get(name: str, version=None)`
+
+Discover/Get a web service.
+
+### Delete a Service:
+
+`delete(name: str, version: str)`
+
+Delete a web service.
+
+Args:
+- name: The web service name.
+- version: The web service version.
+
+**Returns:**
+
+True for success, False otherwise.
+
+### List Services:
+
+- `ml.list(name=None, version=None)`
+
+List the different published web services. The service name and service version are optional. This call allows you to retrieve service information regarding:
+
+1. All services published
+2. All versioned services for a specific named service
+3. A specific version for a named service
+
+### Publish/update a Service:
+
+service(name: str, version:None)
+
+#### Publish and Update basics:
+
+`publish` and `update` APIS are fluent APIS designed for optional configurations where the readability of the invocation is close to that of the ordinary written prose (grammatical structure).
+
+A `publish` or `update` can be initiated by invoking the appropriate method on the `ml.service(name)` or `ml.service(name, version)` object, then calling `.deploy()` to send the request.
+
+For example, a simple `publish` request:
+
+Here we are publishing a service named `add-one` that is comprised of a block of code `answer = x + 1`. It accepts `inputs` named x of type float and returns `outputs` of type float. Finishing the configuration, we call `deploy` to indicate we are done and to deploy the service.
+
+```py
+
+ml.service('add-one')
+   .code_str('answer = x + 1')
+   .inputs({ 'x': 'float' })
+   .outputs({ 'answer': 'float' })
+   .deploy()
+```
+
+By including the service name only you are implying that you will be creating and deploying a new service by the given name and that new service will include these properties. The ordinary written prose (grammatical structure) looks exactly like how one would describe the operation in words.
+
+Update an existing service:
+
+By including the optional valid version you are implying that you will be updating a service by the given name and version. The ordinary written prose (grammatical structure) looks exactly like how one would describe the operation in words.
+
+For example, we are updating an existing `service` named `add-one/v1` with a new `description` and `deploying` it again.
+
+```py
+
+ml.service('add-one', 'v1')
+  .description('The updated description for the `add-one/v1` service')
+  .deploy()
+```
