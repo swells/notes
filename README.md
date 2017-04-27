@@ -279,11 +279,11 @@ ml.service('add-one')
 
 ### Discover/Get a Service:
 
-`get(name: str, version=None)`
+`ml.get(name: str, version=None)`
 
 ### Delete a Service:
 
-`delete(name: str, version: str)`
+`ml.delete(name: str, version: str)`
 
 ### List Services:
 
@@ -300,10 +300,10 @@ List the different published web services. The service name and service version 
 ### Publish/update a Service:
 
 ### Fluent APIS
-`service(name: str)`
+`ml.service(name: str)`
 
 ### Non-Fluent equivalent
-`deploy_service(name: str, **kargs)`
+`ml.deploy_service(name: str, **kargs)`
 
 #### Publish and Update basics:
 
