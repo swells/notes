@@ -64,7 +64,8 @@ kwargs = {
     'description': 'The Description of the `add-one` service, accepts _markdown_.' 
 }
 ml.service('add-one', **kargs).deploy()
-# or perhaps: `ml.deploy_service('add-one', **kargs)
+# or perhaps a diffrent function w/o override
+ml.deploy_service('add-one', **kargs)
 
 # --- Discover service by `name` or `name` and optional `version` ---
 service = ml.get('add-one')
