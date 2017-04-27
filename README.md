@@ -223,3 +223,30 @@ The function name or `alias` map to the swagger's `operationId`
       }
    }
 ```
+
+## Packages:
+
+* Can/Should we be using both `pip` and `conda`?
+* Should there be some flexibility with `$pip freeze`?
+
+Packages could be installed during service publishing in one of two ways:
+
+1. Collectively using the `.packages(['pkg, 'pkg'])` function
+2. Individually using the `.package('pkg') function
+
+```python
+# 1. --- Add packages dependencies collectively --
+
+ml.service('add-one')
+   .code(add_one)
+   .packages(['pandas==0.15.2', 'numpy'])
+   .deploy()
+
+# 2. --- Add packages dependencies individually ---
+
+ml.service('add-one')
+   .code(add_one)
+   .package('pandas==0.15.2')
+   .package('numpy')
+   .deploy()
+```
