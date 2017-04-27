@@ -224,6 +224,28 @@ The function name or `alias` map to the swagger's `operationId`
    }
 ```
 
+
+
+## Import:
+
+Before beginning building and managing a service, be sure to import the `mldeploy` package:
+
+```python
+from mldeploy import MlDeploy, AzureActiveDirectory
+```
+
+## Authentication and Global Configuration:
+
+`MlDeploy`
+
+Used for authentication and global configurations such as logging, environemnts, ect... The `MlDeploy` is a factory for an authenticated session returning an `ml` object to be used for service management.
+
+**note**
+It will be helpful to have flexibility over:
+
+ - Different authentication strategies in addition to basic LDAP or Azure Active Directory authentication. For example, authenticate via `username` and an `apikey` .
+ - Different implementations of `MlDeploy` such as `Azure` (or whatever) to populate as they see fit
+
 ## Packages:
 
 * Can/Should we be using both `pip` and `conda`?
