@@ -277,35 +277,25 @@ ml.service('add-one')
 ## Supported Functions
 
 
-### Get a Service:
+### Discover/Get a web service:
 
 `get(name: str, version=None)`
-
-Discover/Get a web service.
 
 ### Delete a Service:
 
 `delete(name: str, version: str)`
 
-Delete a web service.
-
-Args:
-- name: The web service name.
-- version: The web service version.
-
-**Returns:**
-
-True for success, False otherwise.
-
 ### List Services:
 
-- `ml.list(name=None, version=None)`
+`ml.list(name=None, version=None)`
 
 List the different published web services. The service name and service version are optional. This call allows you to retrieve service information regarding:
 
 1. All services published
 2. All versioned services for a specific named service
 3. A specific version for a named service
+
+**@note** - page?
 
 ### Publish/update a Service:
 
