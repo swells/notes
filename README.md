@@ -15,7 +15,7 @@ From Python/IPython/Notebooks:
 
 ## API Overview
 
-The Python client library is a light-weight progressive fluent API crafted for flexibility, readability, and a low learning curve. 
+The Python client library is a light-weight progressive fluent API crafted for flexibility, readability, and a low learning curve. An option to not use the fluent API is also provided depending on preference.
 
 ```python
 from mldeploy import MlDeploy, AzureActiveDirectory 
