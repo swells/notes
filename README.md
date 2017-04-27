@@ -1,4 +1,4 @@
-# Opinionated MRS perspective
+# Python Client = Opinionated MRS perspective
 
 ## Use-case Scenarios
 
