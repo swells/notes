@@ -277,7 +277,7 @@ ml.service('add-one')
 ## Supported Functions
 
 
-### Discover/Get a web service:
+### Discover/Get a Service:
 
 `get(name: str, version=None)`
 
@@ -299,7 +299,11 @@ List the different published web services. The service name and service version 
 
 ### Publish/update a Service:
 
-service(name: str, version:None)
+### Fluent APIS
+`service(name: str)`
+
+### Non-Fluent equivalent
+`deploy_service(name: str, **kargs)`
 
 #### Publish and Update basics:
 
@@ -312,7 +316,6 @@ For example, a simple `publish` request:
 Here we are publishing a service named `add-one` that is comprised of a block of code `answer = x + 1`. It accepts `inputs` named x of type float and returns `outputs` of type float. Finishing the configuration, we call `deploy` to indicate we are done and to deploy the service.
 
 ```py
-
 ml.service('add-one')
    .code_str('answer = x + 1')
    .inputs({ 'x': 'float' })
@@ -326,7 +329,7 @@ Update an existing service:
 
 By including the optional valid version you are implying that you will be updating a service by the given name and version. The ordinary written prose (grammatical structure) looks exactly like how one would describe the operation in words.
 
-For example, we are updating an existing `service` named `add-one/v1` with a new `description` and `deploying` it again.
+For example, we are `updating` an existing `service` named `add-one/v1` with a new `description` and `deploying` it again.
 
 ```py
 
