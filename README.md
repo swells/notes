@@ -4,7 +4,7 @@
 
 July 2017, we will be working to introduce a Python Client Library `mldeploy`
 that is comparable in functionality with the existing `mrsdeploy` R package for 
-model operationalize. Focus will be given to produce a light-weight progressive 
+model operationalization. Focus will be given to produce a light-weight progressive 
 set of APIs that are crafted for flexibility, readability, and a low learning 
 curve.
 
