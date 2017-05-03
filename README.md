@@ -174,7 +174,7 @@ coverage with gated checkins.
 
 ## Documentation
 
-> **Pending** based on internal convention accept since Python docstrings can be written following several different formats.
+> **Pending** based on internal convention agreement since Python docstrings can be written following several different formats.
 
 Documentation will be supplied in both the package as well as more verbose
 overview and examples on MSDN and github. All public API functions must be fully documented, including a README, and support for ` help(package)` during an import.
