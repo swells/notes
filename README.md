@@ -72,7 +72,7 @@ be implemented in python, this to include:
 
 `publishService()`
 
-**Arguments**
+####Arguments
 
 - `name` string 
 - `code` string/ R file/ R function 
