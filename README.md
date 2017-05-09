@@ -192,7 +192,7 @@ The latest stable version dependencies will be used unless.
 
 - [pytest](https://docs.pytest.org/en/latest/)
 - [pytest-cov](https://pypi.python.org/pypi/pytest-cov)
-- [Mock](https://pypi.python.org/pypi/mock and [pytest-mock](https://pypi.python.org/pypi/pytest-mock) 
+- [Mock](https://pypi.python.org/pypi/mock) and [pytest-mock](https://pypi.python.org/pypi/pytest-mock) 
 - [tox](https://pypi.python.org/pypi/tox)
 
 ## ShipR Integration
@@ -335,8 +335,6 @@ from mldeploy import MLDeploy, AzureML, AuthenticationContext
 ml = MLDeploy('production-env-url', auth=auth) 
 ml = AzureML('production-env-url', auth=auth) 
 ```
-**note** Does Azure ML have the notion of a service `version`? 
-
 
 ### Discover/Get a Service
 
@@ -374,6 +372,8 @@ ServiceDefinition
 + output(name: str, type: str) -> this
 + objects(objects) -> this
 + object(object) -> this
++ model(model: object) -> this
++ models(models: list) -> this
 + packages(packages: list) -> this
 + package(package: str) -> this
 + artifacts(filenames: list) -> this
@@ -385,13 +385,13 @@ ServiceDefinition
 
 ##### Non-Fluent equivalent
 
-`ml.deploy_service(name: str, **kargs)`
+`ml.deploy_service(name: str, **kwargs)`
 
 #### Publish basics
 
 The fluent APIS designed for optional configurations where the readability of the invocation is close to that of the ordinary written prose (grammatical structure).
 
-A `publish` or `update` can be initiated by invoking the appropriate method on the `ml.service(name)` or `ml.service(name, version)` object, then calling `.deploy()` to send the request.
+A `publish` can be initiated by invoking the `ml.service(name)` object then calling `.deploy()` to send the request.
 
 For example, a simple `publish` request:
 
