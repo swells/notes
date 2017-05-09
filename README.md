@@ -223,6 +223,7 @@ def init:
 def add_one(x):
    print init_obj
    print local_obj
+   print model
    return x + 1
 
 # --- Publish service via fluent API ---
@@ -436,11 +437,13 @@ ServiceDefinition
 
 ##### Non-Fluent equivalent
 
-`ml.redeploy_service(name: str, **kargs)`
+`ml.redeploy_service(name: str, **kwargs)`
 
 #### Update basics
 
 The fluent APIS designed for optional configurations where the readability of the invocation is close to that of the ordinary written prose (grammatical structure).
+
+An `update` can be initiated by invoking the `ml.service(name)` object then calling `.redeploy()` to send the request.
 
 For example, we are `updating` an existing `service` named `add-one/v1` with a new `description` and `deploying` it again.
 
