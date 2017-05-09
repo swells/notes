@@ -1,7 +1,7 @@
 # Python Client Library Package `mldeploy`
 
 > 
-> <em style="color:red">**Note** Document Actively evolving</em>
+> **Note** Document Actively evolving
 > 
 
 ## Introduction
