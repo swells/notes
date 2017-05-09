@@ -51,7 +51,7 @@ The authentication UI prompts are intrinsically a _remote-execution_ characteris
 The motivation for the divergence is to further articulate that _remote-execution_ and _services_ 
 are truly separate pieces of functionality that work independently of one another as well as together.
 
-> **Note** Will need to check with AML regarding authentication constraints
+> **Note** We will need to check with AML regarding authentication constraints
 
 To fully support AML VNext and ML Server in an uniform manner, expanding and normalizing the AAD 
 context to acquire authentication tokens might be necessary:
@@ -63,7 +63,7 @@ context to acquire authentication tokens might be necessary:
 - Acquire Token with _Device Code_
 - Acquire Token with _Authorization Code_
 
-[See authentication API details](#authentication-api)
+[See authentication API details](#authenticationcontext)
 
 ### AML VNext flexibility
 
@@ -286,7 +286,7 @@ kwargs = {
 ml.redeploy_service('add-one', **kwargs)
 ```
 
-## Import:
+## Import
 
 Before beginning building and managing a service, be sure to import the `mldeploy` package:
 
@@ -340,8 +340,7 @@ Example:
 import mldeploy
 from mldeploy import MLDeploy, AzureML, AuthenticationContext
 
-ml = MLDeploy('production-env-url', auth=auth) 
-ml = AzureML('production-env-url', auth=auth) 
+ml = MLDeploy('env-url', auth=auth) 
 ```
 
 ### Discover/Get a Service
