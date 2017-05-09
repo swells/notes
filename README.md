@@ -84,7 +84,7 @@ be implemented in python, this to include:
 - `v` string 
 - `alias` string NULL 
 
-`updateService()`
+> `updateService()`
 
 **Arguments**
 
@@ -99,21 +99,21 @@ be implemented in python, this to include:
 - `v` string 
 - `alias` string NULL 
 
-`getService()`
+> `getService()`
 
 **Arguments**
 
 - `name` string
 - `v` string (optional)
 
-`deleteService()`
+> `deleteService()`
 
 **Arguments**
 
 - `name` string
 - `v` string (optional)
 
-`listServices()` 
+> `listServices()` 
 
 **Arguments**
 
