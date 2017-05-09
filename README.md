@@ -20,9 +20,9 @@ curve.
 - General intent is functional symmetry with the R package `mrsdeploy` 
 - `AML VNext` implies Azure Machine Learning next latest stable version
 
-## Requirments
+## Requirments (P1)
 
-### Environments and Ecosystem <small>(Pl)</small>
+### Environments and Ecosystem 
 
 The `mldeploy` library will integrate and run successfully in both python 
 Applications as scripts, interactive REPL, in addition to IPython/Jupyter data science notebooks.
@@ -39,13 +39,16 @@ IPython/Jupyter data science notebook users to authenticate against
 Active Directory and Azure Active Directory (AAD) in order to access 
 protected web resources.
 
-To use the functions in the mldeploy library, you must log into the ML Server as an 
+To use the functions in the `mldeploy` library, you must log into the ML Server as an 
 authenticated user. Users have the following authentication options:
 
 - Active Directory
 - Azure Active Directory (AAD)
 
-There will be no authentication User Interface prompts as in `mrsdeploy`,
+There will be no authentication User Interface (UI) prompts as in `mrsdeploy`under `remoteLogin()`.
+The authentication UI prompts are intrinsically a _remote-execution_ characteristic.
+The motivation for the divergence is to further articulate that _remote-execution_ and _services_ 
+are truly separate pieces of functionality that work independently of one another as well as together.
 
 > **Note** Will need to check with AML regarding authentication constraints
 
@@ -80,28 +83,27 @@ be implemented in python, this to include:
 
 - `name` string 
 - `code` string/ R file/ R function 
-- `model` R object/ R file
-- `snapshot` string 
-- `inputs` list of param name and type 
-- `outputs` list of param name and type
-- `artifacts` string array 
-- `v` string 
-- `alias` string NULL 
+- `model` R object/ R file (optional)
+- `snapshot` string (optional)
+- `inputs` list of param name and type (optional)
+- `outputs` list of param name and type (optional)
+- `artifacts` string array (optional)
+- `v` string (optional)
+- `alias` string (optional)
 
 > `updateService()`
 
 **Arguments**
 
 - `name` string 
-- `v` string
 - `code` string/ R file/ R function 
-- `model` R object/ R file
-- `snapshot` string 
-- `inputs` list of param name and type 
-- `outputs` list of param name and type
-- `artifacts` string array 
-- `v` string 
-- `alias` string NULL 
+- `model` R object/ R file (optional)
+- `snapshot` string (optional)
+- `inputs` list of param name and type (optional)
+- `outputs` list of param name and type (optional)
+- `artifacts` string array (optional)
+- `v` string (optional)
+- `alias` string (optional)
 
 > `getService()`
 
@@ -140,7 +142,7 @@ for the following:
 - Specifying the option to install from a `pip-freeze` txt file (AML Vnext flexibility)
 - Flexibility and convenience to define dependencies via package module references
 
-> **note** 1. Can/Should we be using both pip and conda? 2. Should there be some flexibility with $pip freeze?
+> **Note** 1. Are we using both pip and conda. Should there be some flexibility with `$pip freeze`?
 
 [See packages API details](#packages-api)
 
@@ -174,7 +176,7 @@ coverage with gated checkins.
 - [Mock](https://pypi.python.org/pypi/mock) and [pytest-mock](https://pypi.python.org/pypi/pytest-mock) for mocking
 - [tox](https://pypi.python.org/pypi/tox) to run tests against all the supported python versions
 
-> **note** Do we need something like `tox` given what ShipR supports?
+> **Note** Do we need something like `tox` given what ShipR supports?
 
 ## Documentation
 
@@ -316,18 +318,18 @@ ml = MLDeploy('staging-env-url', auth=auth)
 
 Used for authentication and global configurations such as logging and environment setting. The `MlDeploy` is a factory for an authenticated session returning an `ml` object to be used for service management and consumption.
 
-> `MLDeploy` extends `BaseOperationalization`:
+> `MLDeploy` extends `BaseOperationalization`
 
 ```
 BaseOperationalization
- + deploy_service(name: str, **kargs): Service
- + redeploy_service(name: str, **kargs): Service
- + get_service(name: str, version:None): Service
- + list_services(name:None, version:None): list
- + delete_service(name: str, version:None): bool
- + service(name: str): ServiceDefinition
- + logging(on: bool): void
- + environment(url: str, auth: Authentication): void
+ + deploy_service(name: str, **kwargs) -> Service
+ + redeploy_service(name: str, **kwargs) -> Service
+ + get_service(name: str, version=None) -> Service
+ + list_services(name:None, version=None) -> list
+ + delete_service(name: str, version=None) -> bool
+ + service(name: str) -> ServiceDefinition
+ + logging(on: bool) -> void
+ + environment(url: str, auth: Authentication) -> void
 
 ```
 
