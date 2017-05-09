@@ -70,7 +70,7 @@ fashion that makes it easy to be included as a dependency inside other packages 
 Full symmetry for service management and consumption operations will 
 be implemented in python, this to include: 
 
-`publishService()`
+> `publishService()`
 
 #### Arguments
 
