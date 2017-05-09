@@ -10,8 +10,9 @@ curve.
 
 ## Out of Scope
 
-- Remote execution functionality
-- Realtime Scoring functionality (we will design for it)
+- Python Remote execution functionality
+- Python Realtime Scoring functionality (we will design for it)
+- The July 2017 depreciation of the `mrsdeploy` R package in place of the `mldeploy` R equivalent
 - `mldeploy` Python package install and distribution mechanism (No R Client equivalent) 
 
 ## Assumptions
