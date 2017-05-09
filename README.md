@@ -214,6 +214,7 @@ ml = MlDeploy('url', auth=context.active_directory('username', 'password'))
 
 ## --- Prepare for publishing ---
 local_obj = 'Local Object'
+model = 'Model'
 
 def init:
    # Any objects defined here are evaluated first and are accessible in `code`
@@ -228,8 +229,9 @@ def add_one(x):
 ml.service('add-one')
    .version('1.0.1')
    .code_fn(add_one, init)
-   .inputs({ 'x', 'float' }),
-   .outputs({ 'answer', 'float' }),
+   .inputs({ 'x': 'float' }),
+   .outputs({ 'answer': 'float' }),
+   .models([ model ]),
    .objects([ local_obj ])
    .packages([ 'pandas==0.18.0', 'sklearn', np ])
    .description('The Description of the `add-one` service, accepts _markdown_.')
@@ -239,14 +241,15 @@ ml.service('add-one')
 kwargs = { 
     'version': '1.0.1', 
     'code_fn': [ add_one, init ]    
-    'objects': [ local_obj ], 
-    'inputs': { 'x', 'float' },
-    'outputs': { 'answer', 'float' },
+    'objects': [ local_obj ],
+    'models': [ model ],
+    'inputs': { 'x': 'float' },
+    'outputs': { 'answer': 'float' },
     'packages': [ 'pandas==0.18.0', 'sklearn', np ],
     'description': 'The Description of the `add-one` service, accepts _markdown_.' 
 }
 
-ml.deploy_service('add-one', **kargs)
+ml.deploy_service('add-one', **kwargs)
 
 # --- Discover service by `name` or `name` and optional `version` ---
 service = ml.get_service('add-one')
@@ -272,7 +275,7 @@ kwargs = {
     'version': '1.0.1', 
     'description': 'Update the description field.' 
 }
-ml.redeploy_service('add-one', **kargs)
+ml.redeploy_service('add-one', **kwargs)
 ```
 
 ## Import:
