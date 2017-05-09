@@ -22,7 +22,7 @@ curve.
 
 ## Requirments
 
-### Environments and Ecosystem
+### Environments and Ecosystem <small>(Pl)</small>
 
 The `mldeploy` library will integrate and run successfully in both python 
 Applications as scripts, interactive REPL, in addition to IPython/Jupyter data science notebooks.
@@ -45,8 +45,12 @@ authenticated user. Users have the following authentication options:
 - Active Directory
 - Azure Active Directory (AAD)
 
+There will be no authentication User Interface prompts as in `mrsdeploy`,
+
+> **Note** Will need to check with AML regarding authentication constraints
+
 To fully support AML VNext and ML Server in an uniform manner, expanding and normalizing the AAD 
-context to acquire authentication tokens will be necessary:
+context to acquire authentication tokens might be necessary:
 
 - Acquire Token with _Client Credentials_
 - Acquire Token with _Username and Password_
@@ -312,7 +316,7 @@ ml = MLDeploy('staging-env-url', auth=auth)
 
 Used for authentication and global configurations such as logging and environment setting. The `MlDeploy` is a factory for an authenticated session returning an `ml` object to be used for service management and consumption.
 
-`MLDeploy` extends `BaseOperationalization`:
+> `MLDeploy` extends `BaseOperationalization`:
 
 ```
 BaseOperationalization
@@ -365,8 +369,8 @@ List the different published web services. The service name and service version 
 ServiceDefinition
 + __init__(self: ServiceDefinition, name: str) -> this
 + version(version: string) -> this
-+ code_fn(add_one, init) ->  this
-+ code_str(code: str, init: str) -> this
++ code_fn(add_one, init=None) ->  this
++ code_str(code: str, init=None) -> this
 + inputs(name_type: dict) -> this
 + outputs(name_type: dict) -> this
 + input(name: str, type: str) -> this
@@ -379,7 +383,7 @@ ServiceDefinition
 + package(package: str) -> this
 + artifacts(filenames: list) -> this
 + alias(operation: str) -> this
-+ description(description: script) -> this
++ description(description: str) -> this
 + deploy() -> Service
 + redeploy() -> Service
 ```
@@ -418,8 +422,8 @@ ml.service(name: str).redeploy()
 ServiceDefinition
 + __init__(self: ServiceDefinition, name: str) -> this
 + version(version: string) -> this
-+ code_fn(add_one, init) ->  this
-+ code_str(code: str, init: str) -> this
++ code_fn(add_one, init=None) ->  this
++ code_str(code: str, init=None) -> this
 + inputs(name_type: dict) -> this
 + outputs(name_type: dict) -> this
 + input(name: str, type: str) -> this
@@ -430,7 +434,7 @@ ServiceDefinition
 + package(package: str) -> this
 + artifacts(filenames: list) -> this
 + alias(operation: str) -> this
-+ description(description: script) -> this
++ description(description: str) -> this
 + deploy() -> Service
 + redeploy() -> Service
 ```
@@ -487,8 +491,8 @@ How **optional** properties map to a service's dynamic swagger definition:
 ```python
 ml.service('add-one')
   .version('1.0.1')
-  .inputs({ 'x', 'float' }),
-  .outputs({ 'answer', 'float' }),
+  .inputs({ 'x': 'float' }),
+  .outputs({ 'answer': 'float' }),
   .description('The Description of the `add-one` service, accepts _markdown_.')
   .deploy()
 ```
