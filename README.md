@@ -469,10 +469,10 @@ ml.service('add-one')
 
 ## Errors
 
-All HTTP `4xx` and `5xx` responses will be considered an error by default. 
-Errors raised on the request will be internally caught, normalized, formated,
-and returned.
+All errors will be managed and realized as simple HTTP errors. All HTTP `4xx` and `5xx` responses will be considered an error by default. 
+Errors raised on the request will be internally caught, normalized, formatted, and returned.
 
+Example:
 ```python
  # --- Internal error handling ---
  try:
@@ -486,18 +486,22 @@ except requests.exceptions.RequestException as e:
         return "Error: {}".format(e)
 ```
 
-There are two classifications of error sernerios:
+There are two classifications of error scenarios:
 
-1. Service manegment errors
+1. Service management errors
 2. Service consumption errors
 
-### Service manegment errors
+### Service management errors
 
-These errors will be raised for any of the typical HTTP `4xx` and `5xx` responses
-during:
+Will be raised for any of the typical HTTP `4xx` and `5xx` error responses during:
 
-- `list_services()`
--
+- `get_service(name:str, version=None)`
+- `delete_service(name:str, version=None)`
+- `list_services(name=None, version=None)`
+- `service_deploy(name:str, **kwargs)`
+- `service_redeploy(name:str, **kwargs)`
+- `service(name:str).deploy()`
+- `service(name:str).redeploy()`
 
 ### Service consumption errors
 
