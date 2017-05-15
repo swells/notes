@@ -23,7 +23,10 @@
     * [Development](#development)
   * [ShipR Integration](#shipR-integration)
   * [Full API Overview](#full-api-overview)
-
+  * [Import](#import)
+  * [Supported Functions and Objects](#supported-functions-and-objects)
+  * [Errors](#errors)
+  * [Package API](#package-api)
 
 ## Introduction
 
