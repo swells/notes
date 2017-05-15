@@ -340,12 +340,12 @@ from mldeploy import MLDeploy, AuthenticationContext
 
 context = AuthenticationContext()
 auth = context.active_directory('username', 'password')
-auth = context.azure_active_directory_client_credentials('authuri', 'tenant', 'resource', 'clientid')
-auth = context.azure_active_directory_username_password('authuri', 'tenant', 'resource', 'clientid', 'username', 'password')
-auth = context.azure_active_directory_refresh_token('authuri', 'tenant', 'resource',  'clientid', 'refresh_token')
-auth = context.azure_active_directory_client_certificate('authuri', 'tenant', 'resource', 'clientid', 'privateKeyFile', 'privateKeyFile')
-auth = context.azure_active_directory_device_code('authuri', 'tenant', 'resource', 'clientid')
-auth = context.azure_active_directory_authorization_code()
+auth = context.aad_client_credentials('authuri', 'tenant', 'resource', 'clientid')
+auth = context.aad_username_password('authuri', 'tenant', 'resource', 'clientid', 'username', 'password')
+auth = context.aaa_refresh_token('authuri', 'tenant', 'resource',  'clientid', 'refresh_token')
+auth = context.aad_client_certificate('authuri', 'tenant', 'resource', 'clientid', 'privateKeyFile', 'privateKeyFile')
+auth = context.aad_device_code('authuri', 'tenant', 'resource', 'clientid')
+auth = context.aad_authorization_code()
 
 # -- Create authenticated service session --
 ml = MLDeploy('staging-env-url', auth=auth)
