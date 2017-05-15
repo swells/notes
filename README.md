@@ -4,6 +4,23 @@
 > **Note** Document Actively evolving
 > 
 
+
+Table of contents
+=================
+
+  * [gh-md-toc](#gh-md-toc)
+  * [Table of contents](#table-of-contents)
+  * [Installation](#installation)
+  * [Usage](#usage)
+    * [STDIN](#stdin)
+    * [Local files](#local-files)
+    * [Remote files](#remote-files)
+    * [Multiple files](#multiple-files)
+    * [Combo](#combo)
+  * [Tests](#tests)
+  * [Dependency](#dependency)
+
+
 ## Introduction
 
 July 2017, we will be working to introduce a Python Client Library `mldeploy`
