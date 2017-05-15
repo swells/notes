@@ -27,6 +27,7 @@
   * [Supported Functions and Objects](#supported-functions-and-objects)
   * [Errors](#errors)
   * [Package API](#package-api)
+  * [Highlevel API to Swagger mapping (MRS)](#highlevel-api-to-swagger-mapping-mls)
 
 ## Introduction
 
@@ -598,7 +599,7 @@ ml.service('add-one')
 ```
 
 
-## Highlevel API to Swagger mapping (MRS)
+## Highlevel API to Swagger mapping (MLS)
 
 How **optional** properties map to a service's dynamic swagger definition:
 
