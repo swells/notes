@@ -476,8 +476,7 @@ There are two classifications of error scenarios:
 
 ### Validation errors 
 
-Validation errors are used to ensure that only valid data is sent on a request. A standared `ValidationError`
-will be raised when provided 
+Validation errors are used to ensure that only valid data is sent on a request. These errors will be raised when user provided values are incorrect and will always display within the context of the action.
 
 ### Request errors
 
@@ -501,7 +500,7 @@ except requests.exceptions.RequestException as e:
 Request errors will breakdown into two categories:
 
 1. [Service management errors](#service-management-errors)
-2. [Service consumption errors](#service-consumption -errors)
+2. [Service consumption errors](#service-consumption-errors)
 
 #### Service management errors
 
@@ -517,7 +516,7 @@ Service management errors will be raised for any of the typical HTTP `4xx` and `
 
 #### Service consumption errors
 
-Consumption errors are raised during api service invocations and are realized via the `ApiException` class. They will extend the HTTP `4xx` and `5xx` errors to provide additional information about the request such as: I/O, headers, request, and response payloads.
+Consumption errors are raised during api service invocations and are realized via the `ApiException` class. The intention will be to extend the HTTP `4xx` and `5xx` errors and provide additional information about the request such as: I/O, headers, request, and response payloads.
 
 ```python
 
