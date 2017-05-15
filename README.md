@@ -467,6 +467,42 @@ ml.service('add-one')
   .redeploy()
 ```
 
+## Errors
+
+All HTTP `4xx` and `5xx` responses will be considered an error by default. 
+Errors raised on the request will be internally caught, normalized, formated,
+and returned.
+
+```python
+ # --- Internal error handling ---
+ try:
+    response = send('url', 'method', 'data')
+
+    # Consider any status other than 2xx an error
+    if not response.status_code // 100 == 2:
+       return "Error: Unexpected response {}".format(response)
+
+except requests.exceptions.RequestException as e:
+        return "Error: {}".format(e)
+```
+
+There are two classifications of error sernerios:
+
+1. Service manegment errors
+2. Service consumption errors
+
+### Service manegment errors
+
+These errors will be raised for any of the typical HTTP `4xx` and `5xx` responses
+during:
+
+- `list_services()`
+-
+
+### Service consumption errors
+
+
+
 ## Package API
 
 Packages can be installed during service publishing in one of two ways:
