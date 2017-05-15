@@ -4,10 +4,6 @@
 > **Note** Document Actively evolving
 > 
 
-
-Table of contents
-=================
-
   * [gh-md-toc](#gh-md-toc)
   * [Table of contents](#table-of-contents)
   * [Installation](#installation)
