@@ -4,17 +4,25 @@
 > **Note** Document Actively evolving
 > 
 
-  * [Introduction(#introduction)
+  * [Introduction](#introduction)
   * [Out of Scope](#out-of-scope)
-  * [Assumptions](#sssumptions)
-  * [Requirments (P1)](#requirments(P1))
+  * [Assumptions](#assumptions)
+  * [Requirments (P1)](#requirments-p1)
     * [Environments and Ecosystem](#environments-and-ecosystem)
     * [Authentication](#authentication)
     * [AML VNext flexibility](#aml-vnext-flexibility)
     * [Service API Parity with `mrsdeploy`](#service-api-parity-with-mrsdeploy)
     * [Specifying packages](#specifying-packages)
-  * [Tests](#tests)
-  * [Dependency](#dependency)
+  * [Encoding Types](#encoding-types)
+  * [Package Structure](#package-structure)
+  * [Security](#security)
+  * [Testing](#testing)
+  * [Documentation](#documentation)
+  * [Open Source Dependencies](#open-source-dependencies)
+    * [Runtime](#runtime)
+    * [Development](#development)
+  * [ShipR Integration](#shipR-integration)
+  * [Full API Overview](#full-api-overview)
 
 
 ## Introduction
