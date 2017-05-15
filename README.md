@@ -246,6 +246,7 @@ ml.service('add-one')
    .models([ model ]),
    .objects([ local_obj ])
    .packages([ 'pandas==0.18.0', 'sklearn', np ])
+   .artifacts([ 'histogram.png' ])
    .description('The Description of the `add-one` service, accepts _markdown_.')
    .deploy() 
 
@@ -258,6 +259,7 @@ kwargs = {
     'inputs': { 'x': 'float' },
     'outputs': { 'answer': 'float' },
     'packages': [ 'pandas==0.18.0', 'sklearn', np ],
+    'artifacts' : [ 'histogram.png' ],
     'description': 'The Description of the `add-one` service, accepts _markdown_.' 
 }
 
