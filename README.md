@@ -471,11 +471,15 @@ ml.service('add-one')
 
 There are two classifications of error scenarios:
 
-1. Validation Errors
+1. [Validation Errors](#validation-errors)
+2. [Request Errors](#request-errors)
 
-Validation errors are used to ensure that only valid data is sent on a request.
+### Validation errors 
 
-2. Request Errors
+Validation errors are used to ensure that only valid data is sent on a request. A standared `ValidationError`
+will be raised when provided 
+
+### Request errors
 
 All errors will be managed and realized as simple HTTP errors. All HTTP `4xx` and `5xx` responses will be considered an error by default. 
 Errors raised on the request will be internally caught, normalized, formatted, and returned.
@@ -497,11 +501,11 @@ except requests.exceptions.RequestException as e:
 Request errors will breakdown into two categories:
 
 1. [Service management errors](#service-management-errors)
-2. Service consumption errors(#service-consumption -errors)
+2. [Service consumption errors](#service-consumption -errors)
 
-### Service management errors
+#### Service management errors
 
-Will be raised for any of the typical HTTP `4xx` and `5xx` error responses during:
+Service management errors will be raised for any of the typical HTTP `4xx` and `5xx` error responses during:
 
 - `get_service(name:str, version=None)`
 - `delete_service(name:str, version=None)`
@@ -511,9 +515,40 @@ Will be raised for any of the typical HTTP `4xx` and `5xx` error responses durin
 - `service(name:str).deploy()`
 - `service(name:str).redeploy()`
 
-### Service consumption errors
+#### Service consumption errors
+
+Consumption errors are raised during api service invocations and are realized via the `ApiException` class. They will extend the HTTP `4xx` and `5xx` errors to provide additional information about the request such as: I/O, headers, request, and response payloads.
+
+```python
+
+class ApiException(Exception):
+
+    def __init__(self, status=None, reason=None, http_resp=None):
+        if http_resp:
+            self.status = http_resp.status
+            self.reason = http_resp.reason
+            self.body = http_resp.data
+            self.headers = http_resp.getheaders()
+        else:
+            self.status = status
+            self.reason = reason
+            self.body = None
+            self.headers = None
+
+    def __str__(self):
+        """
+        Custom error messages for exception
+        """
+        error_message = "({0})\n"\
+                        "Reason: {1}\n".format(self.status, self.reason)
+        if self.headers:
+            error_message += "HTTP response headers: {0}\n".format(self.headers)
+
+        if self.body:
+            error_message += "HTTP response body: {0}\n".format(self.body)
 
 
+```
 
 ## Package API
 
