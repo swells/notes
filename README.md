@@ -4,15 +4,15 @@
 > **Note** Document Actively evolving
 > 
 
-  * [gh-md-toc](#gh-md-toc)
-  * [Table of contents](#table-of-contents)
-  * [Installation](#installation)
-  * [Usage](#usage)
-    * [STDIN](#stdin)
-    * [Local files](#local-files)
-    * [Remote files](#remote-files)
-    * [Multiple files](#multiple-files)
-    * [Combo](#combo)
+  * [Introduction(#introduction)
+  * [Out of Scope](#out-of-scope)
+  * [Assumptions](#sssumptions)
+  * [Requirments (P1)](#requirments(P1))
+    * [Environments and Ecosystem](#environments-and-ecosystem)
+    * [Authentication](#authentication)
+    * [AML VNext flexibility](#aml-vnext-flexibility)
+    * [Service API Parity with `mrsdeploy`](#service-api-parity-with-mrsdeploy)
+    * [Specifying packages](#specifying-packages)
   * [Tests](#tests)
   * [Dependency](#dependency)
 
