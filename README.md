@@ -25,9 +25,13 @@
   * [Full API Overview](#full-api-overview)
   * [Import](#import)
   * [Supported Functions and Objects](#supported-functions-and-objects)
+    * [`AuthenticationContext`](#)
+    * [`MLDeploy`](#mldeploy)
   * [Errors](#errors)
+    * [Validation Errors](#validation-errors)
+    * [Runtime Errors](#runtime-errors)
   * [Package API](#package-api)
-  * [Highlevel API to Swagger mapping (MRS)](#highlevel-api-to-swagger-mapping-mls)
+  * [Highlevel API to Swagger mapping (MLS)](#highlevel-api-to-swagger-mapping-mls)
 
 ## Introduction
 
