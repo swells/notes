@@ -469,6 +469,14 @@ ml.service('add-one')
 
 ## Errors
 
+There are two classifications of error scenarios:
+
+1. Validation Errors
+
+Validation errors are used to ensure that only valid data is sent on a request.
+
+2. Request Errors
+
 All errors will be managed and realized as simple HTTP errors. All HTTP `4xx` and `5xx` responses will be considered an error by default. 
 Errors raised on the request will be internally caught, normalized, formatted, and returned.
 
@@ -486,10 +494,10 @@ except requests.exceptions.RequestException as e:
         return "Error: {}".format(e)
 ```
 
-There are two classifications of error scenarios:
+Request errors will breakdown into two categories:
 
-1. Service management errors
-2. Service consumption errors
+1. [Service management errors](#service-management-errors)
+2. Service consumption errors(#service-consumption -errors)
 
 ### Service management errors
 
