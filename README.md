@@ -1,9 +1,5 @@
 # Python Client Library Package `mldeploy`
 
-> 
-> **Note** Document Actively evolving
-> 
-
   * [Introduction](#introduction)
   * [Out of Scope](#out-of-scope)
   * [Assumptions](#assumptions)
