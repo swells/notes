@@ -742,3 +742,17 @@ The function name or `alias` map to the swagger's `operationId`
       }
    }
 ```
+
+| Public Function                          | Returns           |
+| ---------------------------------------- |:-----------------:|
+| `MLDeploy()`                             | MLDeploy          | 
+| `deploy_service(name:str, **kwargs)`     | Service           |
+| `redeploy_service(name:str, **kwargs)`   | Service           |
+| `list_services(name=None, version=None)` | list              |
+| `get_service(name:str, version=None)`    | Service           |
+| `delete_service(name:str, version=None)` | bool              |
+| `service(name:str)`       _fluent*_      | ServiceDefinition |
+
+
+
+
