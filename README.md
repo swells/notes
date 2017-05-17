@@ -21,8 +21,8 @@
   * [Full API Overview](#full-api-overview)
   * [Import](#import)
   * [Supported Functions and Objects](#supported-functions-and-objects)
-    * [`AuthenticationContext`](#)
     * [`MLDeploy`](#mldeploy)
+    * [`ServiceDefinition`](#servicedefinition)
     * [Discover/Get a Service](#discoverget-a-service)
     * [Delete a Service](#delete-a-service)
     * [List Services](#list-services)
@@ -33,6 +33,7 @@
     * [Runtime Errors](#runtime-errors)
   * [Package API](#package-api)
   * [Highlevel API to Swagger mapping (MLS)](#highlevel-api-to-swagger-mapping-mls)
+  * [Public API and Object Matrix](#public-api-and-object-matrix)
 
 ## Introduction
 
@@ -84,20 +85,6 @@ There will be no authentication User Interface (UI) prompts as in `mrsdeploy`und
 The authentication UI prompts are intrinsically a _remote-execution_ characteristic.
 The motivation for the divergence is to further articulate that _remote-execution_ and _services_ 
 are truly separate pieces of functionality that work independently of one another as well as together.
-
-> **Out of Scope for July** We will need to check with AML regarding authentication constraints
-
-To fully support AML VNext and ML Server in an uniform manner, expanding and normalizing the AAD 
-context to acquire authentication tokens might be necessary:
-
-- Acquire Token with _Client Credentials_
-- Acquire Token with _Username and Password_
-- Acquire Token with _Client Certificate_
-- Acquire Token with _Refresh Token_
-- Acquire Token with _Device Code_
-- Acquire Token with _Authorization Code_
-
-[See authentication API details](#authenticationcontext)
 
 ### AML VNext flexibility
 
@@ -354,27 +341,6 @@ ml = MLDeploy('env-url', auth=auth)
 
 ## Supported Functions and Objects
 
-### `AuthenticationContext`
-
-```python
-import mldeploy
-from mldeploy import MLDeploy, AuthenticationContext
-
-context = AuthenticationContext()
-auth = context.active_directory('username', 'password')
-auth = context.azure_active_directory('authuri', 'tenant', 'resource', 'clientid', 'username', 'password')
-
-auth = context.aad_client_credentials('authuri', 'tenant', 'resource', 'clientid')
-auth = context.aad_username_password('authuri', 'tenant', 'resource', 'clientid', 'username', 'password')
-auth = context.aaa_refresh_token('authuri', 'tenant', 'resource',  'clientid', 'refresh_token')
-auth = context.aad_client_certificate('authuri', 'tenant', 'resource', 'clientid', 'privateKeyFile', 'privateKeyFile')
-auth = context.aad_device_code('authuri', 'tenant', 'resource', 'clientid')
-auth = context.aad_authorization_code()
-
-# -- Create authenticated service session --
-ml = MLDeploy('staging-env-url', auth=auth)
-```
-
 ### `MLDeploy`
 
 Used for authentication and global configurations such as logging and environment setting. The `MlDeploy` is a factory for an authenticated session returning an `ml` object to be used for service management and consumption.
@@ -414,7 +380,7 @@ auth = ('username', 'password', 'authuri', 'tenant', 'resource', 'clientid')
 ml = MLDeploy('url', auth=auth, logging=True)
 ```
 
-### ServiceDefinition
+### `ServiceDefinition`
 
 ```
 + __init__(self: ServiceDefinition, name: str) -> this
@@ -802,34 +768,39 @@ The function name or `alias` map to the swagger's `operationId`
    }
 ```
 
-| Public Function                          | Returns           |
-| ---------------------------------------- |:-----------------:|
-| `MLDeploy()`                             | MLDeploy          | 
-| `deploy_service(name:str, **kwargs)`     | Service           |
-| `redeploy_service(name:str, **kwargs)`   | Service           |
-| `list_services(name=None, version=None)` | list              |
-| `get_service(name:str, version=None)`    | Service           |
-| `delete_service(name:str, version=None)` | bool              |
-| `service(name:str)`       _fluent*_      | ServiceDefinition |
-  ``` 
-  + __init__(self: ServiceDefinition, name: str) -> this
-+ version(version: string) -> this
-+ code_fn(add_one, init=None) ->  this
-+ code_str(code: str, init=None) -> this
-+ inputs(name_type: dict) -> this
-+ outputs(name_type: dict) -> this
-+ input(name: str, type: str) -> this
-+ output(name: str, type: str) -> this
-+ objects(objects: tuple) -> this
-+ object(object: Object) -> this
-+ model(model: object) -> this
-+ models(models: tuple) -> this
-+ packages(packages: tuple) -> this
-+ package(package: str) -> this
-+ artifacts(filenames: list) -> this
-+ alias(operation: str) -> this
-+ description(description: str) -> this
-+ deploy() -> Service
-+ redeploy() -> Service
+## Public API and Object Matrix
+
+| Public Function                              | Returns           |
+| -------------------------------------------- |:-----------------:|
+| `MLDeploy(url:str, auth:tupel, logging=None)`| MLDeploy          | 
+| `deploy_service(name:str, **kwargs)`         | Service           |
+| `redeploy_service(name:str, **kwargs)`       | Service           |
+| `list_services(name=None, version=None)`     | list              |
+| `get_service(name:str, version=None)`        | Service           |
+| `delete_service(name:str, version=None)`     | bool              |
+| `service(name:str)`       _Fluent API*_      | ServiceDefinition |
+
+*Fluent API:
+
+``` 
+ServiceDefinition
+ + version(version: str) -> this
+ + code_fn(add_one, init=None) ->  this
+ + code_str(code: str, init=None) -> this
+ + inputs(name_type: dict) -> this
+ + outputs(name_type: dict) -> this
+ + input(name: str, type: str) -> this
+ + output(name: str, type: str) -> this
+ + objects(objects: tuple) -> this
+ + object(object: Object) -> this
+ + model(model: object) -> this
+ + models(models: tuple) -> this
+ + packages(packages: tuple) -> this
+ + package(package: str) -> this
+ + artifacts(filenames: list) -> this
+ + alias(operation: str) -> this
+ + description(description: str) -> this
+ + deploy() -> Service
+ + redeploy() -> Service
 ```
 
