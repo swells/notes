@@ -811,6 +811,25 @@ The function name or `alias` map to the swagger's `operationId`
 | `get_service(name:str, version=None)`    | Service           |
 | `delete_service(name:str, version=None)` | bool              |
 | `service(name:str)`       _fluent*_      | ServiceDefinition |
-
-
+  ``` 
+  + __init__(self: ServiceDefinition, name: str) -> this
++ version(version: string) -> this
++ code_fn(add_one, init=None) ->  this
++ code_str(code: str, init=None) -> this
++ inputs(name_type: dict) -> this
++ outputs(name_type: dict) -> this
++ input(name: str, type: str) -> this
++ output(name: str, type: str) -> this
++ objects(objects: tuple) -> this
++ object(object: Object) -> this
++ model(model: object) -> this
++ models(models: tuple) -> this
++ packages(packages: tuple) -> this
++ package(package: str) -> this
++ artifacts(filenames: list) -> this
++ alias(operation: str) -> this
++ description(description: str) -> this
++ deploy() -> Service
++ redeploy() -> Service
+```
 
