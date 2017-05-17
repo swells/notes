@@ -770,15 +770,15 @@ The function name or `alias` map to the swagger's `operationId`
 
 ## Public API and Object Matrix
 
-| Public Function                              | Returns           |
-| -------------------------------------------- |:-----------------:|
-| `MLDeploy(url:str, auth:tuple, logging=None)`| MLDeploy          | 
-| `deploy_service(name:str, **kwargs)`         | Service           |
-| `redeploy_service(name:str, **kwargs)`       | Service           |
-| `list_services(name=None, version=None)`     | list              |
-| `get_service(name:str, version=None)`        | Service           |
-| `delete_service(name:str, version=None)`     | bool              |
-| `service(name:str)`       _Fluent API*_      | ServiceDefinition |
+| Public Function                                   | Returns           |
+| ------------------------------------------------- |:-----------------:|
+| `ml = MLDeploy(url:str, auth:tuple, logging=None)`| MLDeploy          | 
+| `ml.deploy_service(name:str, **kwargs)`           | Service           |
+| `ml.redeploy_service(name:str, **kwargs)`         | Service           |
+| `ml.list_services(name=None, version=None)`       | list              |
+| `ml.get_service(name:str, version=None)`          | Service           |
+| `ml.delete_service(name:str, version=None)`       | bool              |
+| `ml.service(name:str)`       _Fluent API*_        | ServiceDefinition |
 
 ***Fluent API:**
 
