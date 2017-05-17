@@ -791,16 +791,35 @@ ServiceDefinition
  + outputs(name_type: dict) -> this
  + input(name: str, type: str) -> this
  + output(name: str, type: str) -> this
- + objects(objects: tuple) -> this
+ + objects(objects: tuple|list) -> this
  + object(object: Object) -> this
  + model(model: object) -> this
- + models(models: tuple) -> this
- + packages(packages: tuple) -> this
+ + models(models: tuple|list) -> this
+ + packages(packages: tuple|list) -> this
  + package(package: str) -> this
- + artifacts(filenames: list) -> this
+ + artifacts(filenames: tuple|list) -> this
+ + artifact(filenames: str) -> this
  + alias(operation: str) -> this
  + description(description: str) -> this
  + deploy() -> Service
  + redeploy() -> Service
 ```
 
+****kwargs (equivalent Dictionary):**
+
+Same names:
+
+``` 
+kwargs = { 
+    'version': '1.0.1', 
+    'code_fn': [ add_one, init ],
+    'code_str:' ['add-one', 'init'],
+    'objects': [ local_obj ],
+    'models': [ model ],
+    'inputs': { 'x': 'float' },
+    'outputs': { 'answer': 'float' },
+    'packages': [ 'pandas==0.18.0', 'sklearn', np ],
+    'artifacts' : [ 'histogram.png' ],
+    'description': 'The Description of the `add-one` service, accepts _markdown_.' 
+}
+```
