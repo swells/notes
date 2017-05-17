@@ -85,7 +85,7 @@ The authentication UI prompts are intrinsically a _remote-execution_ characteris
 The motivation for the divergence is to further articulate that _remote-execution_ and _services_ 
 are truly separate pieces of functionality that work independently of one another as well as together.
 
-> **Note** We will need to check with AML regarding authentication constraints
+> **Out of Scope for July** We will need to check with AML regarding authentication constraints
 
 To fully support AML VNext and ML Server in an uniform manner, expanding and normalizing the AAD 
 context to acquire authentication tokens might be necessary:
@@ -245,13 +245,12 @@ repository locations. All versions will be shrink-wrapped and frozen.
 ## Full API Overview
 
 ```python
-from mldeploy import MlDeploy, AuthenticationContext
+from mldeploy import MLDeploy
 from sklearn import datasets
 import numpy as np
 
 # --- Create authenticated session via LDAP/AD ---
-context = AuthenticationContext()
-ml = MlDeploy('url', auth=context.active_directory('username', 'password'))
+ml = MLDeploy('http://localhost:12800', auth=('username', 'password'))
 
 ## --- Prepare for publishing ---
 local_obj = 'Local Object'
@@ -329,6 +328,29 @@ Before beginning building and managing a service, be sure to import the `mldeplo
 ```python
 from mldeploy import MlDeploy, AuthenticationContext
 ```
+## Authentication
+
+To use the functions in the `mldeploy` library, you must log into the ML Server as an 
+authenticated user. Users have the following authentication options that are represented 
+as a tuple of immutable strings:
+
+- Active Directory:  `('username', 'pasword')`
+- Azure Active Directory (AAD): `('username', 'password', 'authuri', 'tenant', 'resource', 'clientid')`
+
+Example:
+
+```python
+import mldeploy
+from mldeploy import MLDeploy
+
+# --- Active Directory ---
+auth = ('username', 'password')
+ml = MLDeploy('env-url', auth=auth) 
+
+# --- Azure Active Directory ---
+auth = ('username', 'password', 'authuri', 'tenant', 'resource', 'clientid')
+ml = MLDeploy('env-url', auth=auth) 
+```
 
 ## Supported Functions and Objects
 
@@ -340,6 +362,8 @@ from mldeploy import MLDeploy, AuthenticationContext
 
 context = AuthenticationContext()
 auth = context.active_directory('username', 'password')
+auth = context.azure_active_directory('authuri', 'tenant', 'resource', 'clientid', 'username', 'password')
+
 auth = context.aad_client_credentials('authuri', 'tenant', 'resource', 'clientid')
 auth = context.aad_username_password('authuri', 'tenant', 'resource', 'clientid', 'username', 'password')
 auth = context.aaa_refresh_token('authuri', 'tenant', 'resource',  'clientid', 'refresh_token')
@@ -366,17 +390,52 @@ BaseOperationalization
  + delete_service(name: str, version=None) -> bool
  + service(name: str) -> ServiceDefinition
  + logging(on: bool) -> void
- + environment(url: str, auth: Authentication) -> void
-
+ + environment(url: str, auth: tuple) -> void
 ```
+
+#### Arguments
+
+- url:str
+- auth:tuple
+- logging=None (bool) Default is `False`
 
 Example:
 
 ```python
 import mldeploy
-from mldeploy import MLDeploy, AzureML, AuthenticationContext
+from mldeploy import MLDeploy
 
-ml = MLDeploy('env-url', auth=auth) 
+# --- Active Directory ---
+auth = ('username', 'password')
+ml = MLDeploy('url', auth=auth)
+
+# --- Azure Active Directory ---
+auth = ('username', 'password', 'authuri', 'tenant', 'resource', 'clientid')
+ml = MLDeploy('url', auth=auth, logging=True)
+```
+
+### ServiceDefinition
+
+```
++ __init__(self: ServiceDefinition, name: str) -> this
++ version(version: string) -> this
++ code_fn(add_one, init=None) ->  this
++ code_str(code: str, init=None) -> this
++ inputs(name_type: dict) -> this
++ outputs(name_type: dict) -> this
++ input(name: str, type: str) -> this
++ output(name: str, type: str) -> this
++ objects(objects: tuple) -> this
++ object(object: Object) -> this
++ model(model: object) -> this
++ models(models: tuple) -> this
++ packages(packages: tuple) -> this
++ package(package: str) -> this
++ artifacts(filenames: list) -> this
++ alias(operation: str) -> this
++ description(description: str) -> this
++ deploy() -> Service
++ redeploy() -> Service
 ```
 
 ### Discover/Get a Service
@@ -752,7 +811,6 @@ The function name or `alias` map to the swagger's `operationId`
 | `get_service(name:str, version=None)`    | Service           |
 | `delete_service(name:str, version=None)` | bool              |
 | `service(name:str)`       _fluent*_      | ServiceDefinition |
-
 
 
 
