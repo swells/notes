@@ -772,7 +772,7 @@ The function name or `alias` map to the swagger's `operationId`
 
 | Public Function                              | Returns           |
 | -------------------------------------------- |:-----------------:|
-| `MLDeploy(url:str, auth:tupel, logging=None)`| MLDeploy          | 
+| `MLDeploy(url:str, auth:tuple, logging=None)`| MLDeploy          | 
 | `deploy_service(name:str, **kwargs)`         | Service           |
 | `redeploy_service(name:str, **kwargs)`       | Service           |
 | `list_services(name=None, version=None)`     | list              |
@@ -780,7 +780,7 @@ The function name or `alias` map to the swagger's `operationId`
 | `delete_service(name:str, version=None)`     | bool              |
 | `service(name:str)`       _Fluent API*_      | ServiceDefinition |
 
-*Fluent API:
+***Fluent API:**
 
 ``` 
 ServiceDefinition
