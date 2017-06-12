@@ -1,5 +1,109 @@
 # Python Client Library Package `mldeploy`
 
+
+```python
+# -*- coding: utf-8; tab-width: 4; indent-tabs-mode: t; python-indent: 4 -*-
+
+"""
+Role
+====
+
+`Operationalization` is designed to be a low-level abstract foundation class 
+from which other service operationalization attribute classes in the `mldeploy` 
+package can be derived. It provides a standard template for creating
+attribute-based operationalization lifecycle phases providing a consistent 
+`__init()__`, `__del()__` sequence that chains initialization (initializer),
+authentication (authentication), and destruction (destructor) methods for the 
+class hierarchy.
+"""
+
+import six
+
+# python 2 and python 3 compatibility library
+from six import add_metaclass
+from abc import ABCMeta, abstractmethod
+
+
+@add_metaclass(ABCMeta)
+class Operationalization(object):
+
+    def initializer(self, api_client, config):
+        """
+        Init lifecycle method, invoked during construction. Sets up attributes 
+        and invokes initializers for the class hierarchy.
+
+        An optional _noonp_ method where subclass implementers MAY provide this 
+        method definition by overriding.
+
+        Object with configuration property name/value pairs
+		"""        
+        pass
+        
+    def destructor(self):
+        """
+        Destroy lifecycle method. Invokes destructors for the class hierarchy.
+
+        An optional _noonp_ method where subclass implementers MAY provide this 
+        method definition by overriding.
+        """        
+        pass
+        
+    def authentication(self, context):
+        """
+        Authentication lifecycle method. Invokes the authentication enterypoint
+        for the class hierarchy.        
+
+        An optional _noonp_ method where subclass implementers MAY provide this 
+        method definition by overriding.
+        """         
+        pass
+        
+    @abstractmethod
+    def get_service(self, name):
+        """Retrieve service meta-data from the name source and return an new 
+        service instance.
+        """
+
+    @abstractmethod
+    def list_services(self, name=None, version=None):
+        """
+        return a list of service meta-data
+        """
+
+    @abstractmethod
+    def delete_service(self, name):
+        """
+        return True|False
+        """     
+
+    @abstractmethod
+    def deploy_service(self, name, **kwargs):
+        """
+        return a new service instance.        
+        """
+
+    @abstractmethod
+    def redeploy_service(self, name, **kwargs):
+        """
+        return a new service instance.        
+        """
+        
+    def service(self, name):
+        """
+        return a `OperationalizationDefinition` for fluent API.
+        """        
+        return OperationalizationDefinition(name, self)   
+
+
+```
+
+
+
+
+
+
+
+
   * [Introduction](#introduction)
   * [Out of Scope](#out-of-scope)
   * [Assumptions](#assumptions)
