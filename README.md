@@ -1,7 +1,7 @@
 # Python Client Library Package `mldeploy`
 
 
-## Goals
+## Collaboration Goals
 
 1. Agree upon a clean API contract for operationalization
 2. Do not force an opinionated workflow
