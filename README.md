@@ -1,6 +1,15 @@
 # Python Client Library Package `mldeploy`
 
 
+## Goals
+
+1. Agree upon a clean API contract for operationalization
+2. Do not force an opinionated workflow
+3. Provide flexibility that does not disrupt existing efforts (other than the agreed API)
+
+> Only successful if both implementations are  successful
+
+
 ```python
 # -*- coding: utf-8; tab-width: 4; indent-tabs-mode: t; python-indent: 4 -*-
 
