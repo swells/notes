@@ -36,7 +36,7 @@ class Operationalization(object):
         method definition by overriding.
 
         Object with configuration property name/value pairs
-		"""        
+	"""        
         pass
         
     def destructor(self):
