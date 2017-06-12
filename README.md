@@ -10,7 +10,7 @@
 > Only successful if both implementations are  successful
 
 
-## Full API Overview
+## Full API Overview (recap)
 
 ```python
 from mldeploy import MLDeploy
