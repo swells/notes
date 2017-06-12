@@ -95,12 +95,9 @@ ml.redeploy_service('add-one', **kwargs)
 
 
 
+## Requirments
 
-
-
-
-
-
+1. Operationalization subclasses or modules need to only implement and extend the base `Operationalization` abstract class. The framework will manage the lifecycle.
 
 ```python
 # -*- coding: utf-8; tab-width: 4; indent-tabs-mode: t; python-indent: 4 -*-
